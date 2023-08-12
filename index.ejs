@@ -1,0 +1,57 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <script src="/js/script.js"></script>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 header">
+          <h1>Blog Page</h1>
+          <form name="search" action="/search" method="post">
+<select class="blog">
+
+  </select>
+            </form>
+        </div>
+      </div>
+      <div class="blog-container">
+        <div class="row">
+          <div id="blog-section" class="col-md-8 blog-section">
+          </div>
+
+        <div class="col-md-4 add-blog">
+          <h3>Add Blog</h3>
+          <form name="blog-form" id="blog-form" method="post">
+            <span class="message"></span>
+            <div class="form-group">
+            <label>Category:</label>
+            <input type="radio" name="category" value="book"> book
+            <input type="radio" name="category" value="nature"> nature
+            <input type="radio" name="category" value="art"> art
+            <input type="radio" name="category" value="travel"> travel
+          </div>
+          <div class="form-group">
+            <label>Name:</label>
+            <input class="form-control" type="text" name="name" />
+          </div>
+          <div class="form-group">
+            <label>Message:</label>
+            <textarea class="form-control" name="message"></textarea>
+          </div>
+          <input class="btn btn-primary" type="submit" value="Add"/>
+          </form>
+        </div>
+        </div>
+      </div>
+      <div class="row footer hidden">
+        <div class="col-md-12">
+          <p>Copyright @ 2023</p>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
