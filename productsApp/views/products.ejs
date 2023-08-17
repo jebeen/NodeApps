@@ -1,7 +1,8 @@
 <%- include("header")%>
+<span class="status"><%= status %></span>
+<span><h3>Welcome<%= name %></h3>
 <div class="row products-section">
-  <span class="status"><%= status %></span>
-  <% let pid,path %>
+    <% let pid,path %>
   <% for (var a in data ) {
       pid=data[a].p_id;
       path="../uploads/";
@@ -12,6 +13,7 @@
       }
   %>
   <div class="col-md-3 product">
+
     <img src=<%= path%> name="product-image" width="100" height="100">
     <h3><%= data[a].name %><br><span class="desc"><%= data[a].info%></span></h3>
     <p>Manufacture: <%= data[a].Company %></p>
@@ -20,14 +22,16 @@
     <%
     var qrCode;
     if(data[a].code==0) {
-      qrCode ="qr_code_api_url";
+      qrCode ="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl="+data[a].name+"&choe=UTF-8";
       %>
         <p>QR Code: <img src=<%= qrCode%> width='100' height='100' /></p>
       <%
     } else {
       qrCode=new Buffer(data[a].qrcode,'binary').toString('base64');
+      console.log(qrCode);
       %>
       <p>QR Code: <img src="data:image/png;base64,<%= qrCode%>" width='100' height='100' /></p>
+
       <%
     }
     %>
