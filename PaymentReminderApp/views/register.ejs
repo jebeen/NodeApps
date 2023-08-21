@@ -1,0 +1,32 @@
+<%- include('header') %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form action="/process-register" method="post">
+          <h3>Register</h3>
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="Enter First Name" name="firstName" value="<%=(typeof inputData!='undefined')? inputData.firstName:''%>">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.firstName!='undefined' )? errors.firstName.msg:''%></p>
+
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Enter Last Name" name="lastName" value="<%=(typeof inputData!='undefined')? inputData.lastName:''%>">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.lastName!='undefined' )? errors.lastName.msg:''%></p>
+
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="Enter Email Address" name="email" value="<%=(typeof inputData!='undefined')? inputData.emailAddress:''%>">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.email!='undefined' )? errors.email.msg:''%></p>
+
+            <label class="form-label">Password</label>
+            <input type="password"class="form-control"  placeholder="Enter Password" name="password">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.password!='undefined' )? errors.password.msg:''%></p>
+
+            <label class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" placeholder="Enter Confirm Password" name="confirmPassword">
+            <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.confirmPassword!='undefined' )? errors.confirmPassword.msg:''%></p>
+
+            <button type="submit">Submit</button><span>  Have an account <a href="/">Login</a> here </span>
+        </form>
+      </div>
+    </div>
+</div>
+<%- include('footer') %>

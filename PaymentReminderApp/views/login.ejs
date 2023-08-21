@@ -1,0 +1,22 @@
+<%- include('header') %>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+
+        <form action="/process-login" method="post">
+          <h3>Login</h3>
+          <p><%= message %></p>
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter Email Address" value="<%=(typeof inputData!='undefined')? inputData.emailAddress:''%>">
+          <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.email!='undefined' )? errors.email.msg:''%></p>
+
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control"  placeholder="Enter Password" name="password">
+          <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.password!='undefined' )? errors.password.msg:''%></p>
+
+          <button type="submit">Submit</button><span>  Don't have an account <a href="/register">Sign up</a> here </span>
+        </form>
+      </div>
+    </div>
+</div>
+<%- include('footer') %>

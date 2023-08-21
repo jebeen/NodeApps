@@ -1,0 +1,81 @@
+<%- include('header') %>
+<div class="invoice-container">
+<div class="row header">
+  <div class="col-md-8">
+    <h3>Welcome <%= user %> </h3>
+  </div>
+    <div class="col-md-4">
+      <form action="/search" method="post">
+        <div class="row">
+          <div class="col-md-10">
+            <input type="text" class="form-control" name="user" placeholder="Type customer name">
+          </div>
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-search"</span></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row invoices-section">
+      <% let result=data.invoices;%>
+      <table class='table' border='2'><tr><th>Name</th><th>Email</th><th>Department</th><th>Total</th></tr>
+        <%
+        if(result) {
+          for(var a in result) {
+            %>
+            <tr>
+              <td><%= result[a].name %></td>
+              <td><%= result[a].email %></td>
+              <td><%= result[a].department %></td>
+              <td>
+                <%
+                let total=0;
+                for(var [k] in result[a].products) {
+                  total += result[a].products[k].price;
+                  var {title,model,color,price} = result[a].products[k];
+                }
+                %>
+                <%= total %>
+                <span><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#target<%= result[a].id %>">+</button>
+                  <div id="target<%= result[a].id %>" class="collapse">
+                    <table class="table" border="1">
+                      <%= message %>
+                      <tr><th>Product</th><th>Model</th><th>Color</th><th>Price</th><th>Action></th></tr>
+                      <tr>
+                        <td><%= title %></td>
+                        <td><%= model %></td>
+                        <td><%= color %></td>
+                        <td><%= price %></td>
+                        <td>
+                          <form action="/sendEmail" method="post">
+                            <input type="hidden" name="name" value=<%= result[a].name %> />
+                            <input type="hidden" name="email" value=<%= result[a].email %> />
+                            <input typw="hidden" name="invoice_ref" value=<%= result[a].invoicenumber %> />
+                            <input type="hidden" name="price" value=<%= total %> />
+                            <input type="hidden" name="dueDate" value=<%= result[a].paymentdue %> />
+                            <input class="btn btn-primary" type="submit" value="Send Followup Email" />
+                          </form>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </span>
+              </td>
+            </tr>
+            <%
+          }
+        }
+        else {
+          %>
+          <tr><td colspan="4"><b>Record Not Found</b></td></tr>
+          <%
+        }
+      %>
+    </table>
+  </div>
+  <div class="row footer">
+    <h4>Copyright @2023</h4>
+  </div>
+</div>
+<%- include('footer') %>
