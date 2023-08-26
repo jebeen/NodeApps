@@ -1,0 +1,29 @@
+<%- include('header')%>
+<div class="row movies-list-container">
+<%
+  var categories = ["adventure","scietific","fiction","entertainment","action"];
+  var cat;
+  for(var i in data) {
+    let movieCategory = data[i].category;
+    for(var j in categories) {
+      if(j == movieCategory){
+        cat = categories[j];
+        break;
+      }
+    }
+%>
+  <div class="card">
+  <img src="./images/<%= data[i].thumbnail %>" class="card-img-top" alt="Movie Thumbnail">
+  <div class="card-body">
+    <h5>Category: <span class="badge bg-secondary"><%= cat %></span></h5>
+    <h4 class="card-title"><%= data[i].title %></h4>
+    <p class="card-text"><%= data[i].description%> </p>
+    <p>Total Reviews: <b><%= data[i].count %></b></p>
+    <a href="/details/<%= data[i].mid %>" class="btn btn-primary">View Details</a>
+  </div>
+</div>
+  <%
+}
+%>
+  </div>
+<%- include('footer') %>

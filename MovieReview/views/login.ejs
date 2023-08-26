@@ -1,0 +1,19 @@
+<%- include("header") %>
+<div class="row">
+<div class="col-md-6 login-section">
+  <h3>Login</h3>
+  <span id="message"><%= status%></span>
+  <form action="/process-form" id="login" method="post">
+<div class="mb-3">
+  <label for="email" class="form-label">Email address</label>
+  <input type="email" class="form-control" name="email" placeholder="name@example.com" value="">
+</div>
+<div class="mb-3">
+  <label for="password" class="form-label">Password</label>
+  <input type="password" class="form-control" name="password" value="">
+</div>
+<input type="submit" class="button btn btn-primary" value="Submit"/>
+</form>
+</div>
+</div>
+<%- include("footer") %>

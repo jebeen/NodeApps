@@ -1,0 +1,99 @@
+<%- include('header') %>
+<div class="row movie-detail-container">
+  <div class="col-md-7">
+    <img src="../images/<%= data[0].thumbnail %>"  class="movie-img" alt="Movie Image">
+  </div>
+
+  <div class="col-md-5">
+    <p>
+      <h2><%= data[0].title %></h2><span><%= data[0].description %></span>
+    </p>
+    <p><b>Actors:</b> <%= data[0].actor %></p>
+    <p><b>Directed By:</b> <%= data[0].director %></p>
+    <p>Rating:
+      <%
+      for(let i=1;i<=data[0].rating;i++){
+        %>
+        <span class="icon glyphicon glyphicon-star"> </span>
+        <%
+      }
+      %>
+    </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 reviews-container" >
+      <h3><center>Reviews</center></h3>
+      <%
+      if(Object.keys(reviews).length > 0) {
+        for(var [i] of Object.keys(reviews)) {
+          var link="#", collapse="";
+          if(!logged) {
+            link="/login";
+          } else {
+            collapse="collapse";
+          }
+          const {name, comment, posted_on, uid, review_id} = reviews[i];
+          %>
+          <div class="col-md-6 comments">
+            <p><%= name %> posted on <%= posted_on %></p>
+            <p><%= comment %></p>
+            <a href=<%= link %> class="btn btn-warning" data-toggle=<%= collapse %> data-target="#edit<%= review_id%>">
+              <span class="glyphicon glyphicon-edit"></span></a>
+              <a href=<%= link %> class="btn btn-danger" data-toggle=<%= collapse %> data-target="#delete<%= review_id%>">
+                <span class="glyphicon glyphicon-remove"></span></a>
+                <p class="status"><%= status %>
+                  <div id="delete<%= review_id %>" class="delete collapse">
+                    <h3>Are you sure delete this comment?</h3>
+                    <form id="deleteForm" name="form1" method="post">
+                      <input type="hidden" name="mid" value=<%= mid %>/>
+                      <input type="hidden" name="rid" value=<%= review_id %> />
+                      <input type="hidden" name="uid" value=<%= uid %> />
+                      <button class="btn btn-default" value="Yes">Yes</button>
+                      <button class="btn btn-default" value="No">No</button>
+                    </form>
+                  </div>
+
+                  <div id="edit<%= review_id %>" class="collapse">
+                    <h3>Please update your comment here</h3>
+                    <form id="editForm" name="form" method="post">
+                      <textarea name="comment" rows="8" cols="80"><%= comment %></textarea>
+                      <input type="hidden" name="mid" value=<%= mid %> >
+                      <input type="hidden" name="rid" value=<%= review_id %> >
+                      <input type="hidden" name="uid" value=<%= uid %> >
+                      <input type="submit" class="btn btn-default" value="Save">
+                    </form>
+                  </div>
+                  <%
+                }
+              }
+              else {
+                %>
+                <center>
+                  <p class="newcomment"> No reviews </p>
+                  <button class="add-review btn btn-default" data-toggle="collapse" data-target="#add">Be the first to add review</button>
+                  <div id="add" class="collapse"><br />
+                    <form id="addForm" name="form2" method="post">
+                      <textarea name="comment" rows="4" cols="50" placeholder="Type your Comment"></textarea><br/><br/>
+                      <input type="hidden" name="mid" value=<%= mid %> >
+                      <input size="50" type="email" name="email" placeholder="Your email" ><br/><br/>
+                      <input size="50" type="text" name="name" placeholder="Your Name" ><br/><br/>
+                      <input type="hidden" name="rating" />
+                      <%
+                      [1,2,3,4,5].map(i=>{
+                        %>
+                        <span class="rating glyphicon glyphicon-star-empty" id=<%= i %>></span>
+                        <%
+                      })
+                      %>
+                      <br/>
+                      <input type="submit" class="btn btn-default" value="Submit">
+                    </form>
+                  </center>
+                </div>
+                <%
+              }
+              %>
+      </div>
+    </div>
+<%- include('footer') %>
