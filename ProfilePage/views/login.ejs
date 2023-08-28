@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <form action="/auth-login" method="post">
+            <h3>Login</h3>
+            <p><%= message %></p>
+            <%
+            if(message == "Success") {
+            %>
+            <p><a href="/profile">View My Profile</a></p>
+            <%
+          }
+          %>
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-control" placeholder="Enter Email Address" value="<%=(typeof inputData!='undefined')? inputData.email:''%>">
+          <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.email!='undefined' )? errors.email.msg:''%></p>
+
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control"  placeholder="Enter Password" name="password">
+          <p style="color: red;"><%=(typeof errors!='undefined' && typeof errors.password!='undefined' )? errors.password.msg:''%></p>
+
+          <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
