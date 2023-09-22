@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>File Upload</title>
+</head>
+<body>
+    <div class="container">
+        <h1>File Upload</h1>
+        <form id='form' method="post" action="/upload_files" enctype="multipart/form-data">
+            <div class="input-group">
+                <label for='name'>Name</label>
+                <input name='name' id='name' placeholder="Enter your name" />
+            </div>
+            <div class="input-group">
+                <label for='files'>Select files</label>
+                <input id='files' name="files" type="file" multiple>
+            </div>
+            <button class="submit-btn" type='submit'>Upload</button>
+        </form>
+    </div>
+</body>
+</html>
