@@ -1,0 +1,16 @@
+<div class="container">
+  <%- include('header') -%>
+  <div class="flex-container about">
+    <%
+    for(const[i,j] of Object.entries(data)) {
+    %>
+  <div>
+    <p><%= j.title %></p><br/>
+    <p><%= j.desc %></p>
+  </div>
+  <%
+  }
+  %>
+  </div>
+  <%- include('footer') -%>
+</div>

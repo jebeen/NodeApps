@@ -1,0 +1,22 @@
+<div>
+  <h3><%= page %></h3>
+  <%
+  for(const [i,j] of Object.entries(data)) {
+    %>
+      <p><%= j.title %></p>
+      <p><%= j.description %></p>
+      <p>$<%= j.budget %></p>
+      <p><%= j.technology %></p>
+      <button class="btn btn-primary" data-toggle="collapse" data-target="#target"+j.sid>Read more</button>
+      <div class="collapse" id="target"+j.sid>
+      <p><%= j.category1 %></p>
+      <p><%= j.desc1 %></p>
+      <p><%= j.category2 %></p>
+      <p><%= j.desc2 %></p>
+      <p><%= j.category3 %></p>
+      <p><%= j.desc3 %></p>
+      </div>
+      <%
+  }
+  %>
+</div>

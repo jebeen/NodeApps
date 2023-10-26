@@ -1,0 +1,21 @@
+<div class="container">
+  <%- include('header') -%>
+  <div class="form-row">
+    <p>Login</p>
+    <%= message %>
+    <div class="row">
+      <form name="login" action="/handleLogin" method="post">
+        <div class="col-md-4 form-group">
+          <label>Name:</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter the name" />
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Password:</label>
+          <input type="password" class="form-control" name="password" placeholder="Enter the password" />
+        </div>
+        <input type="submit" class="login-btn btn btn-primary" />
+      </form>
+  </div>
+  </div>
+<%- include('footer') -%>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  <%- include('header') -%>
+  <div class="flex-container services">
+    <%= status %>
+    <%
+    if(!status) {
+      %>
+      <span class="user">Welcome <%= user.toUpperCase() %></span>
+      <div><a href="/services/1">Service1</a>
+      <%
+      if(page==1) {
+        %>
+        <%- include('partials/content', {data : data, page: "Service1"}) -%>
+        <%
+      }
+      %>
+    </div>
+    <div><a href="/services/2">Service2</a>
+      <%
+      if(page==2) {
+        %>
+        <%- include('partials/content', {data : data, page: "Service2"}) -%>
+        <%
+      }
+      %>
+    </div>
+    <div><a href="/services/3">Service3</a>
+      <%
+      if(page==3) {
+        %>
+        <%- include('partials/content', {data : data, page: "Service3"}) -%>
+        <%
+      }
+      %>
+    </div>
+    <div><a href="/services/4">Service4</a>
+      <%
+      if(page==4) {
+        %>
+        <%- include('partials/content', {data : data, page: "Service4"}) -%>
+        <%
+      }
+      %>
+    </div>
+    <%
+  }
+  %>
+  </div>
+<%- include('footer') -%>
+</div>
